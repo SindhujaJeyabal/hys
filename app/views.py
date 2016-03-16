@@ -11,7 +11,7 @@ def index():
 	username = ''
 	if 'username' in session:
 		username = escape(session['username'])
-		return render_template('survey.html', name=username)
+		return render_template('trips.html', name=username)
 	else:
 		return render_template('login.html')
 
@@ -30,32 +30,20 @@ def logout():
 	session.pop('email', None)
 	return redirect(url_for('index'))
 
-@myapp.route('/submit-survey', methods=['GET', 'POST'])
-def submitSurvey():
-	username = ''
-	email = ''
+@myapp.route('/create_trip', methods=['GET', 'POST'])
+def create_trip():
+	return render_template('create.html')
+
+@myapp.route('/edit_trip', methods=['GET', 'POST'])
+def edit_trip():
+	return render_template('edit.html')
+
+@myapp.route('/trips', methods=['GET'])
+def viewtrips():
 	if 'username' in session:
-		username = escape(session['username'])
-		email = escape(session['email'])
-		surveyResponse = {}
-		surveyResponse['color'] = request.form.get('color')
-		surveyResponse['food'] = request.form.get('food')
-		surveyResponse['vacation'] = request.form.get('vacation')
-		surveyResponse['fe-before'] = request.form.get('feBefore')
-		surveyResponse['fe-after'] = request.form.get('feAfter')
-		surveyResponse['interest'] = request.form.get('interest')
-		surveyResponse['comment'] = request.form.get('comment')
-		#insert code here to send surveyresponse into your mongoDB
-		model.insert_result(username, email, surveyResponse)
-		return render_template('results.html', name=username, email=email, surveyResponse=surveyResponse)
+		return render_template('trips.html')
 	else:
 		return render_template('login.html')
-
-@myapp.route('/aggregate', methods=['GET', 'POST'])
-def aggregate_survey():
-	print "In views aggregate"
-	survey_deets = model.get_aggregate()
-	return render_template('aggregate.html', counter = survey_deets["count"], avg_before = survey_deets['avg_before'], avg_after = survey_deets['avg_after'])
 
 @myapp.errorhandler(404)
 def page_not_found(error):
