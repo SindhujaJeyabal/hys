@@ -50,3 +50,18 @@ $("input[type='range']").on('change', function updateLabel() {
 	var currentValue = $(this).val();
 	$(this).next().html(currentValue);
 });
+
+$(document).ready(function (){
+	var baseParticipants = 4;
+	var baseDestinations = 2;
+	$("#add-participants-button").on('click', function(){
+		var newInput = '<input type="text" name="participant-' + baseParticipants +'"><br />';
+		$("#enter-participants-list").append(newInput);
+		baseParticipants = baseParticipants + 1;
+  });
+	$("#add-destination-button").on('click', function(){
+		var newInput = '<input type="text" name="participant-' + baseDestinations +'"><br />';
+		$("#enter-participants-list").append(newInput);
+		baseDestinations = baseDestinations + 1;
+  });
+});

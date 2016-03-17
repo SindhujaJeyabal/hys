@@ -32,7 +32,12 @@ def logout():
 
 @myapp.route('/create_trip', methods=['GET', 'POST'])
 def create_trip():
-	return render_template('create.html')
+	username = ''
+	if 'username' in session:
+		username = escape(session['username'])
+		return render_template('create.html', name=username)
+	else:
+		return render_template('login.html')
 
 @myapp.route('/edit_trip', methods=['GET', 'POST'])
 def edit_trip():

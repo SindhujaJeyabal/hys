@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}
+	Create a New Trip
+{% endblock %}
+
+{% block content %}
+
+
+  Road Trip Name:<br />
+  <input type="text" name="name"><br /><br />
+  Participants:<br />
+  <div id = "enter-participants-list">
+    <input type="text" name="participant-1" value="{{ name }}"><span>Trip Admin</span><br />
+    <input type="text" name="participant-2"><br />
+    <input type="text" name="participant-3"><br />
+  </div>
+  <button class = "add-button" id ="add-participants-button">+ Add Participants</button><br /><br />
+  Destination:<br>
+  <input type="text" name="destination-1"><br />
+  <button class = "add-button" id ="add-destination-button">+ Add Destination</button><br /><br />
+
+  <input type="submit" value="Create Road Trip!">
+
+{% endblock %}
