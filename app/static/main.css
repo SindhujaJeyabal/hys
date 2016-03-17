@@ -47,24 +47,22 @@ table {
 /*----------------- CSS RESET ------------------*/
 
 html, body {
-	background-color: #f9f9f9;
-	font-family: 'Open Sans', sans-serif;
+	background-color: #000;
+	font-family: 'Roboto Slab', sans-serif;
 	font-size: 16px;
 }
 
 header {
-	background-color: #1abc9c;
-	box-shadow: 0 2px 6px 1px #a7a7a7;
-	color: #ecf0f1;
+	background-color: #000;
+	color: #fff;
 	height: 5rem;
 }
 
 footer {
-	background-color: #16a085;
+	background-color: #000;
 	bottom: 0;
 	color: #ecf0f1;
 	height: 7rem;
-	margin-top: 2em;
 	text-align: center;
 	width: 100%;
 }
@@ -76,11 +74,14 @@ footer p {
 
 h1, h3 {
 	padding: 4px;
+	color: #fff;
+	font-family: 'Questrial', sans-serif;
 }
 
 h1 {
-	font-size: 2rem;
-	font-weight: bold;
+	font-size: 1.5rem;
+	text-transform: uppercase;
+	letter-spacing: 5px;
 }
 
 h3 {
@@ -162,7 +163,17 @@ input[type=range]::-webkit-slider-runnable-track {
 	height: 5rem;
 	line-height: 4.5rem;
 	margin-left: .1rem;
+	color: #fff;
 }
+
+#section-container h1 {
+
+}
+	#section-container h1 span {
+		display: inline-block;
+		outline: 3px solid #ccc;
+		padding: 1em 2em;
+	}
 
 #username {
 	margin-right: .7rem;
@@ -176,11 +187,12 @@ input[type=range]::-webkit-slider-runnable-track {
 }
 
 #logout-button {
-	background-color: #ecf0f1;
-	border-bottom-color: #bdc3c7;
-	color: #222222;
+	background-color: #6586a2;
+	border: 0;
+	color: #fff;
 	height: 2.5rem;
-	width: 5rem;
+	border-radius: 3px;
+	padding: 4px 10px 5px 10px;
 }
 
 #logout-button:hover {
@@ -188,21 +200,24 @@ input[type=range]::-webkit-slider-runnable-track {
 }
 
 #content {
-	margin-top: 2rem;
+	background-color: #fff;
+	background: url("/static/background.jpg");
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center center;
+	padding: 6rem 0;
 	text-align: center;
 	width: 100%;	
 }
 
 .main-container {
-	background: #ecf0f1;
-	border-radius: 4px;
-	box-shadow: 0px 2px 10px 2px #95a5a6;
 	display: block;
 	min-height: 50vh;
-	margin: 2rem 0 0 25%;
+	margin: 4rem auto;
 	padding: 1rem;
 	text-align: left;
-	width: 50%;
+	width: 100%;
+	max-width: 1080px;
 }
 
 .survey-item, .result-item, #results-email-container {
@@ -224,3 +239,66 @@ input[type=range]::-webkit-slider-runnable-track {
 	text-align: center;
 }
 
+.trip {
+	background-color: rgba(199, 211, 221, 0.85);
+	padding: 25px;
+	width: 26.5%;
+	min-height: 250px;
+	margin: 15px 30px 15px 0px;
+	vertical-align: middle;
+	border-radius: 5px;
+	text-align: center;
+	display: inline-block;
+}
+	.main-container .trip:nth-child(3n) {
+		margin-right: 0px;
+	}
+
+h3.trip-title {
+	color: #30404e;
+	font-weight: bold;
+	margin-bottom: 10px;
+}
+
+p.trip-description {
+	line-height: 150%;
+}
+
+p.trip-owner, p.trip-participants {
+	margin-top: 12px;
+	margin-bottom: 15px;
+	font-size: 18px;
+}
+
+span.trip-owner, span.trip-participants {
+	font-weight: bold;
+	font-size: 12px;
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+	color: #30404e;
+}
+
+hr {
+	margin: 20px 0px;
+	border-top: 1px dotted #fff;
+}
+
+.add-trip {
+	background-color: rgba(77, 104, 127, 0.7);
+	text-align: center;
+	vertical-align: middle;
+	transition: background-color 0.5s ease
+}
+	.add-trip:hover {
+		background-color: #c7d3dd;
+	}
+	.add-trip img {
+		display: block;
+		width: 30%;
+		margin: 0 auto;
+		padding: 50px 0 30px;
+	}
+	.add-trip a {
+		color: #fff;
+		font-size: 20px;
+	}
