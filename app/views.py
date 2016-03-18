@@ -11,7 +11,8 @@ def index():
 	username = ''
 	if 'username' in session:
 		username = escape(session['username'])
-		return render_template('trips.html', name=username)
+		trips = model.get_user_trips(username)
+		return render_template('trips.html', name=username, trips=trips)
 	else:
 		return render_template('login.html')
 
@@ -21,6 +22,7 @@ def login():
 		######## DELETE THIS PART FOR NUM. 3 ###########
 		session['username'] = request.form['username']
 		session['email'] = request.form['email']
+		model.add_user(session['username'])
 		return redirect(url_for('index'))
 		######## DELETE THIS PART FOR NUM. 3 ###########
 
@@ -30,12 +32,32 @@ def logout():
 	session.pop('email', None)
 	return redirect(url_for('index'))
 
+@myapp.route('/trips', methods=['GET'])
+def view_trips():
+	print "viewing trips"
+	if 'username' in session:
+		username = session['username']
+		trips = model.get_user_trips(username)
+		return render_template('trips.html', name = username, trips = trips)
+	else:
+		return render_template('login.html')
+
 @myapp.route('/create_trip', methods=['GET', 'POST'])
 def create_trip():
 	username = ''
 	if 'username' in session:
-		username = escape(session['username'])
-		return render_template('create.html', name=username)
+		if request.method == 'GET':
+			username = escape(session['username'])
+			return render_template('create.html', owner=username)
+		elif request.method == 'POST':
+			trip = dict()
+			trip['trip_name'] = request.form.get('trip_name')
+			trip['trip_owner'] = request.form.get('trip_owner')
+			trip['participant_1'] = request.form.get('participant_1')
+			trip['participant_2'] = request.form.get('participant_2')
+			trip['destination_1'] = request.form.get('destination_1')
+			model.add_trip(trip)
+			return redirect(url_for('view_trips', name=username, trips = model.get_user_trips(username)))
 	else:
 		return render_template('login.html')
 
@@ -43,12 +65,10 @@ def create_trip():
 def edit_trip():
 	return render_template('edit.html')
 
-@myapp.route('/trips', methods=['GET'])
-def viewtrips():
-	if 'username' in session:
-		return render_template('trips.html')
-	else:
-		return render_template('login.html')
+@myapp.route('/delete', methods=['GET'])
+def delete_db():
+	model.delete_all()
+	return null
 
 @myapp.errorhandler(404)
 def page_not_found(error):

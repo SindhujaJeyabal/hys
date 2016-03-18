@@ -8,10 +8,10 @@
 
 
   Road Trip Name:<br />
-  <input type="text" name="name"><br /><br />
+  <input type="text" name="trip_name"><br /><br />
   Participants:<br />
   <div id = "enter-participants-list">
-    <input type="text" name="participant-1" value="{{ name }}"><span>Trip Admin</span><br />
+    <input type="text" name="trip_owner" value="{{ owner }}"><span>Trip Admin</span><br />
     <input type="text" name="participant-2"><br />
     <input type="text" name="participant-3"><br />
   </div>
@@ -20,6 +20,6 @@
   <input type="text" name="destination-1"><br />
   <button class = "add-button" id ="add-destination-button">+ Add Destination</button><br /><br />
 
-  <input type="submit" value="Create Road Trip!">
+  <input id="create_trip" type="submit" value="Create Road Trip!">
 
 {% endblock %}

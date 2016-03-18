@@ -1,24 +1,20 @@
 ///JAVASCRIPTTT
 
 
-$('#submit-survey').on('click', function submitSurvey() {
-	var color = $("input[name=color]").val();
-	var food = $("input[name=food]").val();
-	var vacation = $("input[name=vacation]").val();
-	var feBefore = $("input[name=front-end-before]").val();
-	var feAfter = $("input[name=front-end-after]").val();
-	var interest = $("select[name=interest] :selected").text();
-	var comment = $("textarea[name=comment]").val();
+$('#create_trip').on('click', function create_trip() {
+	var trip_name = $("input[name=trip_name]").val();
+	var trip_owner = $("input[name=trip_owner]").val();
+	var participant_1 = $("input[name=participant-1]").val();
+	var participant_2 = $("input[name=participant-2]").val();
+	var destination_1 = $("input[name=destination-1]").val();
 	////// DELETE THIS PART FOR NUM. 5 /////////
-	$.post('submit-survey',
-		{color: color,
-			food: food,
-			vacation: vacation,
-			feBefore: feBefore,
-			feAfter: feAfter,
-			interest: interest,
-			comment: comment},
-		function responseHandler(data) {
+	$.post('create_trip',
+			{trip_name: trip_name,
+			trip_owner: trip_owner,
+			participant_1: participant_1,
+			participant_2: participant_2,
+			destination_1: destination_1},
+			function responseHandler(data) {
 			console.log(data);
 			document.body.parentNode.innerHTML = data;
 		});
