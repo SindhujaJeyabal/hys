@@ -13,13 +13,16 @@ def delete_all():
 	user_collection.remove()
 	trip_collection.remove()
 
+def get_all_users():
+	users = user_collection.find({ }, { "user_name": 1 })
+	return users
+
 def add_user(uname):
 	print uname
 	user_collection.insert({
 		"user_name": uname,
 		"trips": []
 		})
-	print user_collection.find_one()
 
 def is_user(uname):
 	user_entry = user_collection.find( { "user_name": uname } )
